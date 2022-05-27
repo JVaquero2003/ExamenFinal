@@ -31,6 +31,10 @@ public class ListaSimpleEnlazada {
 		this.size = size;
 	}
 
+	/**
+	 * Pre: ---
+	 * Post: Metodo que añade un [node] en la lista simplemente enlazada.
+	 */
 	public boolean add(Node node) {
 		try {
 			if (size == 0) {
@@ -50,6 +54,11 @@ public class ListaSimpleEnlazada {
 		}
 	}
 
+	/**
+	 * Pre: --- 
+	 * Post: inserta [node] en la posición [position] de la lista
+	 * simplemente enlazada.
+	 */
 	public boolean add(int position, Node node) {
 		try {
 			if (position == 0) {
@@ -73,6 +82,11 @@ public class ListaSimpleEnlazada {
 		}
 	}
 
+	/**
+	 * Pre: --- 
+	 * Post: devuelve el nodo situado en la posicion [position] de la lista
+	 * simplemente enlazada.
+	 */
 	public Node get(int position) {
 		try {
 			if (position >= 0 && position < size) {
@@ -88,12 +102,21 @@ public class ListaSimpleEnlazada {
 		return null;
 	}
 
+	/**
+	 * Pre: ---
+	 * Post: Devuelte true sí y solo sí la lista simplemente enlazada está
+	 * vacía. Devuelve false en caso contrario.
+	 */
 	public boolean isEmpty() {
 		if (size == 0)
 			return true;
 		return false;
 	}
 
+	/**
+	 * Pre: ---
+	 * Post: Metodo que elimina el objeto de la posicion que el usuario elija.
+	 */
 	public boolean delete(int position) {
 		try {
 			if (size == 0) {
@@ -121,28 +144,44 @@ public class ListaSimpleEnlazada {
 			return false;
 		}
 	}
-	
+
+	/**
+	 * Pre: ---
+	 * Post: Metodo que elimina el numero mas alto de la lista simplemente enlazada
+	 */
 	public boolean eliminarMayor() {
-		try {
-			if (size == 0) {
-				System.out.println("La lista esta vacia!!");
-				return false;
-			} else {
-				
-			}
-			size--;
-			return true;
-		} catch (Exception e) {
-			System.out.println(e.toString());
+		if (size == 0) {
+			System.out.println("La lista esta vacia!!");
 			return false;
+		} else {
+			Node p = first;
+			int numMayor = 0;
+			for (int i = 0; i < size; i++) {
+				if (p.getContent() > first.getContent()) {
+					numMayor++;
+				}
+				p = p.getNext();
+			}
+			delete(numMayor);
 		}
+		return true;
 	}
 
+	/**
+	 * Pre: --- 
+	 * Post: muestra por pantalla la posición de todos los nodos de la
+	 * lista simplemente enlazada, junto a su contenido. Si está vacía, indica con un
+	 * mensaje que la cola no tiene contenido.
+	 */
 	public void show() {
-		Node p = first;
-		for (int i = 0; i < size; i++) {
-			System.out.println("[ " + i + "] -> " + p.getContent());
-			p = p.getNext();
+		if (!isEmpty()) {
+			Node p = first;
+			for (int i = 0; i < size; i++) {
+				System.out.println("[" + i + "] -> " + p.toString());
+				p = p.getNext();
+			}
+		} else {
+			System.out.println("¡Is empty!");
 		}
 	}
 
